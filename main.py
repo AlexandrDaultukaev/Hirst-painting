@@ -1,11 +1,12 @@
-
+import math
 import turtle as t
 import random
 import colorgram
-
+sc = t.Screen()
 t.colormode(255)
 tim = t.Turtle()
 colors = colorgram.extract("hirst_art/HirstArt.jpg", 15)
+t.setworldcoordinates(0, 0, sc.window_width(), sc.window_height())
 tim.pensize(30)
 
 
@@ -16,12 +17,19 @@ def draw_circle():
     tim.forward(50)
     tim.pencolor(tup)
     tim.pendown()
-    tim.forward(1)
+    tim.forward(2)
+    tim.penup()
 
 
-for _ in range(10):
-    draw_circle()
+def next_line(i):
+    tim.setpos(0, 100*i)
 
-
-sc = t.Screen()
+tim.speed("fastest")
+tim.penup()
+tim.setpos(0, 15)
+for i in range(1, int(sc.window_height()/96)+1):
+    for j in range(1, int(sc.window_width()/50)-1):
+        draw_circle()
+    next_line(i)
+print(sc.window_width(), sc.window_height())
 sc.exitonclick()
